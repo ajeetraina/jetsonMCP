@@ -1,0 +1,161 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "jetsonmcp"
+version = "1.0.0"
+description = "MCP server for managing and controlling NVIDIA Jetson Nano systems via SSH"
+authors = [
+    {name = "Ajeet Singh Raina", email = "ajeetraina@gmail.com"}
+]
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.8"
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: System :: Systems Administration",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+keywords = ["mcp", "jetson", "nvidia", "edge-computing", "ai", "cuda", "docker"]
+
+dependencies = [
+    "mcp>=1.0.0",
+    "paramiko>=3.3.0",
+    "python-dotenv>=1.0.0",
+    "pydantic>=2.0.0",
+    "asyncio-ssh>=2.14.0",
+    "docker>=6.1.0",
+    "psutil>=5.9.0",
+    "aiofiles>=23.2.0",
+    "tenacity>=8.2.0",
+    "rich>=13.5.0",
+    "click>=8.1.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4.0",
+    "pytest-asyncio>=0.21.0",
+    "pytest-cov>=4.1.0",
+    "black>=23.7.0",
+    "isort>=5.12.0",
+    "flake8>=6.0.0",
+    "mypy>=1.5.0",
+    "pre-commit>=3.3.0",
+    "vulture>=2.9.0",
+]
+
+test = [
+    "pytest>=7.4.0",
+    "pytest-asyncio>=0.21.0",
+    "pytest-cov>=4.1.0",
+    "pytest-mock>=3.11.1",
+    "responses>=0.23.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/ajeetraina/jetsonMCP"
+Documentation = "https://github.com/ajeetraina/jetsonMCP#readme"
+Repository = "https://github.com/ajeetraina/jetsonMCP"
+"Bug Tracker" = "https://github.com/ajeetraina/jetsonMCP/issues"
+
+[project.scripts]
+jetsonmcp = "jetsonmcp.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["jetsonmcp*"]
+
+[tool.black]
+line-length = 88
+target-version = ['py38']
+include = '\.pyi?$'
+extend-exclude = '''
+/(
+  # directories
+  \.eggs
+  | \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | build
+  | dist
+)/
+'''
+
+[tool.isort]
+profile = "black"
+multi_line_output = 3
+line_length = 88
+known_first_party = ["jetsonmcp"]
+
+[tool.mypy]
+python_version = "3.8"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+check_untyped_defs = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+show_error_codes = true
+namespace_packages = true
+explicit_package_bases = true
+
+[[tool.mypy.overrides]]
+module = [
+    "paramiko.*",
+    "docker.*",
+    "asyncssh.*",
+]
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+minversion = "7.0"
+addopts = "-ra -q --strict-markers --strict-config"
+testpaths = ["tests"]
+python_files = ["test_*.py", "*_test.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+markers = [
+    "slow: marks tests as slow (deselect with '-m \"not slow\"')",
+    "integration: marks tests as integration tests",
+    "unit: marks tests as unit tests",
+    "ssh: marks tests that require SSH connection",
+    "docker: marks tests that require Docker",
+    "cuda: marks tests that require CUDA",
+]
+
+[tool.coverage.run]
+source = ["jetsonmcp"]
+omit = [
+    "*/tests/*",
+    "*/test_*",
+    "*/__pycache__/*",
+    "*/venv/*",
+    "*/build/*",
+    "*/dist/*",
+]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "if self.debug:",
+    "if settings.DEBUG",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "if 0:",
+    "if __name__ == .__main__.:",
+    "class .*\\bProtocol\\):",
+    "@(abc\\.)?abstractmethod",
+]
