@@ -1,6 +1,6 @@
 # JetsonMCP
 
-An MCP server that connects AI assistants to NVIDIA Jetson Nano systems for comprehensive edge computing management, AI workload optimization, and system administration.
+An MCP server that connects AI assistants to NVIDIA Jetson Nano Super systems for comprehensive edge computing management, AI workload optimization, and system administration.
 
 JetsonMCP enables AI assistants like Claude to help configure and manage Jetson Nano systems through SSH connections. From AI model deployment to system optimization - ask questions in natural language instead of learning complex CUDA and Linux commands.
 
