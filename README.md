@@ -312,24 +312,4 @@ We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guid
 3. **Hardware Abstraction** - Support for other Jetson platforms (AGX, Xavier)
 4. **Monitoring Enhancement** - Advanced telemetry and observability
 
-## 📝 License
 
-MIT License - see [LICENSE](LICENSE) for details.
-
-## 🔗 Related Projects
-
-- [retroMCP](https://github.com/nbhansen/retroMCP) - MCP server for Raspberry Pi systems
-- [NVIDIA JetPack](https://developer.nvidia.com/embedded/jetpack) - Official Jetson development SDK
-- [NVIDIA Container Toolkit](https://github.com/NVIDIA/nvidia-docker) - GPU container runtime
-
-## 📞 Support
-
-- **Issues**: [GitHub Issues](https://github.com/ajeetraina/jetsonMCP/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/ajeetraina/jetsonMCP/discussions)
-- **Email**: ajeetraina@gmail.com
-
----
-
-**Built with ❤️ for the Edge AI Community**
-
-*JetsonMCP - Bringing AI-powered system administration to NVIDIA Jetson Nano*
